@@ -1,8 +1,17 @@
 <h1>Telephone</h1>
 
 <% if @user %>
+
+	<p><%= image_tag 'http://graph.facebook.com/' + @user.facebookid + '/picture'%>
+	Welcome <%=@user.name%>! 
+	<%=button_to_function "Phonebook", visual_effect(:toggle_slide, "phonebook", :duration => 0.5) %>
+	</p>
 	
-	Welcome <%=@user.name%>!
+	<div id="phonebook" style="display: none;">
+	<% @friends["data"].each do |friend| %>
+		<%= image_tag 'http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]%>
+	<% end %>
+	</div>
 	
 <% else %>	
 

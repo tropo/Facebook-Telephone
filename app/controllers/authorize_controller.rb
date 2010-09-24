@@ -74,7 +74,7 @@ class AuthorizeController < ApplicationController
         @user.timezone = result["timezone"]
         @user.local = result["locale"]
         @user.verified = result["verified"]
-        @user.token = token
+        @user.token = accesstoken
         @user.save
         
         session["id"] = result["id"]
