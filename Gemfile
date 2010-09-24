@@ -29,3 +29,5 @@ gem 'mysql2'
 #   gem 'webrat'
 # end
 
+gem 'rest-client'
+gem 'json'

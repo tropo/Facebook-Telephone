@@ -1,7 +1,12 @@
 Facebooktelephone::Application.routes.draw do
+  resources :users
+
   get "facebook/index"
 
   get "facebook/show"
+  
+  match 'authorize/new' => 'authorize#new'
+  match 'oauth_redirect' => 'authorize#oauth_redirect'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

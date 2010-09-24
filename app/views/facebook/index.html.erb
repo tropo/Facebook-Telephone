@@ -1,3 +1,11 @@
 <h1>Telephone</h1>
 
-https://graph.facebook.com/oauth/authorize?client_id=104425026288823&redirect_uri=http://www.getvocal.com/oauth_redirect
+<% if @user %>
+	
+	Welcome <%=@user.name%>!
+	
+<% else %>	
+
+	<%= link_to 'Authorize', '/authorize/new' %>
+
+<% end %>	
