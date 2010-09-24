@@ -48,9 +48,12 @@ class AuthorizeController < ApplicationController
     
     if resp.body
       token = resp.body.gsub("access_token=", "")
+
+      accesstoken = token.split("&")[0]
+      expires = token.split("&")[1].gsub('expires=', '')
       
       #Now fetch and update user data
-      userresp = RestClient.get "https://graph.facebook.com/me", {:params => {:access_token => token}}
+      userresp = RestClient.get "https://graph.facebook.com/me", {:params => {:access_token => accesstoken, :expires => expires}}
 
       if userresp.body
         data = userresp.body
