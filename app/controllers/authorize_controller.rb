@@ -50,8 +50,7 @@ class AuthorizeController < ApplicationController
       token = resp.body.gsub("access_token=", "")
       
       #Now fetch and update user data
-      userurl = "https://graph.facebook.com/me?access_token=" + token
-      userresp = RestClient.get userurl
+      userresp = RestClient.get "https://graph.facebook.com/me", {:params => {:access_token => token}}
 
       if userresp.body
         data = userresp.body
