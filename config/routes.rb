@@ -2,8 +2,8 @@ Facebooktelephone::Application.routes.draw do
   resources :users
 
   get "facebook/index"
-
   get "facebook/show"
+  match 'facebook' => 'facebook#index'
   
   match 'authorize/new' => 'authorize#new'
   match 'oauth_redirect' => 'authorize#oauth_redirect'
