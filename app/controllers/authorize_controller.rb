@@ -43,8 +43,8 @@ class AuthorizeController < ApplicationController
   
   def oauth_redirect
     code =   params[:code]
-    oauthurl = "https://graph.facebook.com/oauth/access_token?client_id=104425026288823&redirect_uri=http://telephone.heroku.com/oauth_redirect&client_secret=a4807180f4586dc5df989d4d03e242b1&code=" + code
-    resp = RestClient.get oauthurl
+    
+    resp = RestClient.get "https://graph.facebook.com/oauth/access_token", {:params => {:client_id => "104425026288823", redirect_uri => 'http://telephone.heroku.com/oauth_redirect', :client_secret => 'a4807180f4586dc5df989d4d03e242b1', :code => code}}
     
     if resp.body
       token = resp.body.gsub("access_token=", "")
