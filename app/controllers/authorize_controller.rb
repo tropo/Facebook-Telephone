@@ -64,18 +64,20 @@ class AuthorizeController < ApplicationController
           @user = User.new
         end
 
-        @user.name = result["id"]
+        @user.facebookid = result["id"]
+        @user.name = result["name"]
         @user.firstname = result["first_name"]
         @user.lastname = result["last_name"]
         @user.link = result["link"]
         @user.gender = result["gender"]
         @user.email = result["email"]
         @user.timezone = result["timezone"]
-        @user.locale = result["locale"]
+        @user.local = result["locale"]
         @user.verified = result["verified"]
         @user.token = token
         @user.save
         
+        session["id"] = result["id"]
         session["usertoken"] = token
 
       end

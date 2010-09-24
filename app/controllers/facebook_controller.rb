@@ -1,7 +1,7 @@
 class FacebookController < ApplicationController
   def index
     
-    @user = User.find_by_token(session["usertoken"])
+    @user = User.find_by_facebookid(session["id"])
     
   end
 
