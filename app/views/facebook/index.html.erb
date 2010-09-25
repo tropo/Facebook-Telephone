@@ -9,7 +9,8 @@
 	
 	<div id="phonebook" style="display: none;">
 	<% @friends["data"].each do |friend| %>
-		<%= image_tag 'http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]%>
+		<%= link_to_redbox(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), :inline_invite, html_options = {})%>
+		<%# image_tag 'http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]%>
 	<% end %>
 	</div>
 	
