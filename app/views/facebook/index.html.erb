@@ -3,7 +3,8 @@
 <% if @user %>
 
 	<p><%= image_tag 'http://graph.facebook.com/' + @user.facebookid + '/picture'%>
-	Welcome <%=@user.name%>! 
+	Welcome <%=@user.name%>! </p>
+	<p>
 	<%=button_to_function "Phonebook", visual_effect(:toggle_slide, "phonebook", :duration => 0.5) %>
 	<%=button_to_function "Launch Telephone", "popitup('/phono')" %>
 	<!-- <a href="#" onclick="popitup('/phono')">Launch Telephone</a> -->
@@ -18,6 +19,18 @@
 	
 <% else %>	
 
-	<%= link_to 'Authorize', '/authorize/new' %>
-
+	<%=button_to_function "Authorize", "window.location = '/authorize/new'" %>
+	
 <% end %>	
+
+<p>
+	Facebook Telephone is a real telephone except it lives on the web - like you.  Best of all, it's 100% <b>FREE</b>!
+</p>
+<p>
+	Our service is currently in beta but you can place phone calls to any United States or Canadian number for free.  We are working the ability to call your Facebook friends online (browser-to-browser) and the ability to receive inbound calls via this phone as long as the little window pop-out is running.
+</p>
+<p>
+	<% if @user %>
+	<a href="#" onclick="popitup('/phono')">Launch</a> your new telephone now!
+	<% end %>
+</p>
