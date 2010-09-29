@@ -47,26 +47,34 @@ class AuthorizeController < ApplicationController
   def oauth_redirect
     code = params[:code]
     
-    begin
+    # begin
       resp = RestClient.get "https://graph.facebook.com/oauth/access_token", {:params => {:client_id => "104425026288823", :redirect_uri => 'http://telephone.heroku.com/oauth_redirect', :client_secret => 'a4807180f4586dc5df989d4d03e242b1', :code => code}}
-    rescue => e
-      e.response
-    end
+    # rescue => e
+    #   puts e.response
+    # end
 
-    if !e.nil? and resp.body
+    if resp.body
       mytoken = resp.body.gsub("access_token=", "")
 
-      accesstoken = mytoken.split("&")[0]
-      expires = mytoken.split("&")[1].gsub('expires=', '')
+      # accesstoken = mytoken.split("&")[0]
+      # expires = mytoken.split("&")[1].gsub('expires=', '')
       
       #Now fetch and update user data
-      begin
-        userresp = RestClient.get "https://graph.facebook.com/me", {:params => {:access_token => accesstoken, :expires => expires}} 
-      rescue => e
-        e.response
-      end
+        #FOR SOME REASON RESTCLIENT DIDN'T WORK
+        # userresp = RestClient.get "https://graph.facebook.com/me", {:params => {:access_token => URI.escape(accesstoken), :expires => expires}} 
+        
 
-      if !e.nil? and userresp.body
+        require "net/https"
+        require "uri"
+        uri = URI.parse("https://graph.facebook.com/me?access_token=" + URI.escape(mytoken))
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        request = Net::HTTP::Get.new(uri.request_uri)
+        userresp = http.request(request)
+        
+
+      if userresp.body
         data = userresp.body
         result = JSON.parse(data)
         

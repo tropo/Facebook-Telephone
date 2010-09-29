@@ -32,7 +32,7 @@
 	<center>
 		<h1>Invitation</h1><br/>
 		<div id="generalform">
-			<% form_tag url_for(:controller => "facebook", :action => "invite"), :id => "tool-form", :remote => true do %>
+			<%= form_tag url_for(:controller => "facebook", :action => "invite"), :id => "tool-form", :remote => true do %>
 			  <label>Message:</label><br />
 			  <%= text_area_tag "message", "Check out Facebook's new telephone!  http://apps.facebook.com/telephone", {:cols => 40, :rows => 5} %><br />
 			  <br />
