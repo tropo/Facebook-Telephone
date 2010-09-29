@@ -3,7 +3,7 @@
         <meta http-equiv="PRAGMA" content="NO-CACHE" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="/stylesheets/phono.css" rel="stylesheet" type="text/css" />
-		<title>Phono</title>
+		<title>Telephone</title>
 
 	    <script src="/javascripts/jquery_1_4_2.js" type="text/javascript" ></script>
 	    
@@ -53,13 +53,7 @@
     </head>
     <body>
 <center>		
-		
-	<div id="avatars">	
-	<% if @did %>
-		<%= image_tag current_user.gravatar_url, :height => '32', :width => '32', :title => current_user.username.capitalize rescue '<img src="/images/buddyicon.jpg" height="32">'%> <%= image_tag "2rightarrow.png", :height=>"32" %> <%= image_tag @user.gravatar_url, :height => '32', :width => '32', :title => @user.username.capitalize  rescue '<img src="/images/buddyicon.jpg" height="32">'%> 
-	<% end %>	
-	</div>
-	
+			
         <div id="phone01" style="height: 1px; width: 1px"></div>
 </center>        
   
