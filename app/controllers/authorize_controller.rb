@@ -1,4 +1,7 @@
 class AuthorizeController < ApplicationController
+  
+  require 'rubygems'
+  require 'rest-client'
 
 # http://developers.facebook.com/docs/api#authorization
 # 
@@ -47,13 +50,13 @@ class AuthorizeController < ApplicationController
     resp = RestClient.get "https://graph.facebook.com/oauth/access_token", {:params => {:client_id => "104425026288823", :redirect_uri => 'http://telephone.heroku.com/oauth_redirect', :client_secret => 'a4807180f4586dc5df989d4d03e242b1', :code => code}}
     
     if resp.body
-      token = resp.body.gsub("access_token=", "")
+      mytoken = resp.body.gsub("access_token=", "")
 
-      accesstoken = token.split("&")[0]
-      expires = token.split("&")[1].gsub('expires=', '')
+      accesstoken = mytoken.split("&")[0]
+      expires = mytoken.split("&")[1].gsub('expires=', '')
       
       #Now fetch and update user data
-      userresp = RestClient.get "https://graph.facebook.com/me", {:params => {:access_token => accesstoken, :expires => expires}} rescue nil
+      userresp = RestClient.get "https://graph.facebook.com/me", {:params => {:access_token => accesstoken, :expires => expires}} #rescue nil
 
       if !userresp.nil? and userresp.body
         data = userresp.body
@@ -78,7 +81,7 @@ class AuthorizeController < ApplicationController
         @user.save
         
         session["id"] = result["id"]
-        session["usertoken"] = token
+        session["usertoken"] = accesstoken
 
       end
     end
