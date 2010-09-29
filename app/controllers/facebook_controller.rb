@@ -10,7 +10,7 @@ class FacebookController < ApplicationController
      
       friends = RestClient.get "https://graph.facebook.com/me/friends", {:params => {:access_token => @user.token}}
 
-      if friends.body
+      if !friends.nil? and friends.body
         data = friends.body
         @friends = JSON.parse(data)
       end
