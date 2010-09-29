@@ -9,7 +9,9 @@ Facebooktelephone::Application.routes.draw do
   match 'authorize/new' => 'authorize#new'
   match 'oauth_redirect' => 'authorize#oauth_redirect'
 
-  match 'phono(/:id)' => 'facebook#phono'
+  match 'facebook/update_phonoaddress' => 'facebook#update_phonoaddress'
+
+  match 'telephone(/:id)' => 'facebook#telephone'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

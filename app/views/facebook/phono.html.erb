@@ -76,7 +76,7 @@
 						makeCall();
 						
 					<% else %>
-						$.ajax({ url: '/users/update_phonoaddress', data: { 'mysession': $('#sessionId').val()}, type: 'post' })
+						$.ajax({ url: '/facebook/update_phonoaddress', data: { 'mysession': $('#sessionId').val()}, type: 'post' })
 					
 						$("#callstart").hide();
 						$("#callstop").hide();
@@ -182,7 +182,7 @@
 						$("#avatars").hide();
 						
 						
-						$.ajax({ url: '/users/update_phonoaddress', data: { 'mysession': $('#sessionId').val()}, type: 'post' })
+						$.ajax({ url: '/facebook/update_phonoaddress', data: { 'mysession': $('#sessionId').val()}, type: 'post' })
                     },
                     onDisconnect: function() {
 						// $("#callstart").toggle("fast");
@@ -196,7 +196,7 @@
 						$("#avatars").hide();
 						
 						
-						$.ajax({ url: '/users/update_phonoaddress', data: { 'mysession': $('#sessionId').val()}, type: 'post' })
+						$.ajax({ url: '/facebook/update_phonoaddress', data: { 'mysession': $('#sessionId').val()}, type: 'post' })
                     }
                 });
             }

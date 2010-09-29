@@ -22,7 +22,7 @@ class FacebookController < ApplicationController
   def show
   end
   
-  def phono
+  def telephone
     # format DID or SIP address properly
     phone = params[:id] 
     if phone
@@ -55,8 +55,18 @@ class FacebookController < ApplicationController
       end
     end
     
-    render :layout => false
+    render 'phono', :layout => false
     
+  end
+  
+  def update_phonoaddress
+    @user = User.find_by_facebookid(session["id"])
+    @user.phonoaddress = params[:mysession]      
+    @user.save
+    
+    render :update do |page|
+      # page.alert "phono address:  #{@user.phonoaddress}"
+    end
   end
 
 end
