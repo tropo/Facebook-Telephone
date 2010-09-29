@@ -8,7 +8,7 @@ class FacebookController < ApplicationController
     
     if @user
      
-      friends = RestClient.get "https://graph.facebook.com/me/friends", {:params => {:access_token => @user.token}}
+      friends = RestClient.get "https://graph.facebook.com/me/friends", {:params => {:access_token => @user.token}} rescue nil
 
       if !friends.nil? and friends.body
         data = friends.body
