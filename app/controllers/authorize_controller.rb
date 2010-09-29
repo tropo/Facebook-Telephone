@@ -45,20 +45,28 @@ class AuthorizeController < ApplicationController
   end
   
   def oauth_redirect
-    code =   params[:code]
+    code = params[:code]
     
-    resp = RestClient.get "https://graph.facebook.com/oauth/access_token", {:params => {:client_id => "104425026288823", :redirect_uri => 'http://telephone.heroku.com/oauth_redirect', :client_secret => 'a4807180f4586dc5df989d4d03e242b1', :code => code}}
-    
-    if resp.body
+    begin
+      resp = RestClient.get "https://graph.facebook.com/oauth/access_token", {:params => {:client_id => "104425026288823", :redirect_uri => 'http://telephone.heroku.com/oauth_redirect', :client_secret => 'a4807180f4586dc5df989d4d03e242b1', :code => code}}
+    rescue => e
+      e.response
+    end
+
+    if !e.nil? and resp.body
       mytoken = resp.body.gsub("access_token=", "")
 
       accesstoken = mytoken.split("&")[0]
       expires = mytoken.split("&")[1].gsub('expires=', '')
       
       #Now fetch and update user data
-      userresp = RestClient.get "https://graph.facebook.com/me", {:params => {:access_token => accesstoken, :expires => expires}} #rescue nil
+      begin
+        userresp = RestClient.get "https://graph.facebook.com/me", {:params => {:access_token => accesstoken, :expires => expires}} 
+      rescue => e
+        e.response
+      end
 
-      if !userresp.nil? and userresp.body
+      if !e.nil? and userresp.body
         data = userresp.body
         result = JSON.parse(data)
         
