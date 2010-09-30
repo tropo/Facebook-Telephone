@@ -7,6 +7,8 @@ class FacebookController < ApplicationController
     @user = User.find_by_facebookid(session["id"])
     
     if @user
+      
+      session["phone"] = @user.phonenumber
      
       friends = RestClient.get "https://graph.facebook.com/me/friends", {:params => {:access_token => @user.token}} rescue nil
 
@@ -70,6 +72,12 @@ class FacebookController < ApplicationController
   end
   
   def numberupdate
+    @user = User.find_by_facebookid(session["id"])
+    if @user
+      @user.phonenumber = params[:phonenumber]
+      @user.save
+      session["phone"] = @user.phonenumber
+    end
     render :update do |page|
       # page.alert "phono address:  #{@user.phonoaddress}"
       page.RedBox.close(); 

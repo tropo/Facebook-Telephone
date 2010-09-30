@@ -51,7 +51,7 @@
 		<div id="generalform">
 			<%= form_tag url_for(:controller => "facebook", :action => "numberupdate"), :id => "number-form", :remote => true do %>
 			  
-			  <%= text_field_tag "phonenumber" %><br />
+			  <%= text_field_tag "phonenumber", session["phone"] %><br />
 			  <br />
 			  <%= submit_tag "Update" %>
 			<% end %>

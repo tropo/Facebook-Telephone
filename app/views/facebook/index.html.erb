@@ -34,20 +34,22 @@
 	
 <% else %>	
 
-	<%=button_to_function "Authorize", "window.location = '/authorize/new'" %>
+	<p><%=button_to_function "Authorize", "window.location = '/authorize/new'" %></p>
 	
 <% end %>	
 
-<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fapps.facebook.com%2Ftelephone%2F&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+<p><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fapps.facebook.com%2Ftelephone%2F&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+</p>
 
 <p>
 	Telephone is a real telephone that it lives on the web - like you.  Best of all, it's absolutely <b>FREE</b>!
 </p>
 <p>
-	Our service is currently in beta but you can place phone calls to any United States or Canadian number for free.  We are working the ability to call your Facebook friends online (browser-to-browser) and the ability to receive inbound calls via this phone as long as the little window pop-out is running.
+	Our service is currently in beta but you can place real phone calls to any United States or Canadian number for free.  We are working the ability to call your Facebook friends online (browser-to-browser) and the ability to receive inbound calls via this phone as long as the little window pop-out is running.
 </p>
+
 <p>
 	<% if @user %>
-	<a href="#" onclick="popitup('/phono')">Launch</a> your new telephone now!
+	<a href="#" onclick="popitup('/phono')">Launch</a> your new telephone now! (Note: This application works best when used with headphones to stop the echoing.)
 	<% end %>
 </p>
