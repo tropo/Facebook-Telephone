@@ -51,8 +51,8 @@ class AuthorizeController < ApplicationController
     if resp.body
       mytoken = resp.body.gsub("access_token=", "")
 
-      # accesstoken = mytoken.split("&")[0]
-      # expires = mytoken.split("&")[1].gsub('expires=', '')
+      accesstoken = mytoken.split("&")[0]
+      expires = mytoken.split("&")[1].gsub('expires=', '')
       
       #Now fetch and update user data
         #FOR SOME REASON RESTCLIENT DIDN'T WORK
