@@ -5,6 +5,11 @@ module RedboxHelper
     link_to_function name, "RedBox.showInline('#{id.to_s}')", html_options
   end
   
+  def button_to_redbox(name, id, html_options = {})
+    @uses_redbox = true
+    button_to_function name, "RedBox.showInline('#{id.to_s}')", html_options
+  end  
+
   def link_to_component_redbox(name, url_options = {}, html_options = {})
     @uses_redbox = true
     id = id_from_url(url_options, html_options[:id])

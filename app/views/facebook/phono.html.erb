@@ -64,7 +64,7 @@
                 flashMovie:"/phono-0.8.44504.swf",
                 tones: true,
                 onConnect: function(event) {
-                    $("#sessionId").val(event.phone.sessionId);
+                    $("#sessionId").val(event.phone.sessionId());
 					<% if @did %>
                     
 						makeCall();

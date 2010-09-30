@@ -5,6 +5,8 @@ Facebooktelephone::Application.routes.draw do
   match 'facebook' => 'facebook#index'
   get "facebook/show"
   post "facebook/invite"
+  post "facebook/numberupdate"
+  
   
   match 'authorize/new' => 'authorize#new'
   match 'oauth_redirect' => 'authorize#oauth_redirect'

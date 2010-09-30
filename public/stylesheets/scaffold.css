@@ -58,3 +58,10 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+#generalform button, input{
+	padding:5px 10px;
+	color:#666666;
+	background-color:#F7F7F7;
+	border:1px solid #CCCCCC;
+}

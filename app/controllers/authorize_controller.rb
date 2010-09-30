@@ -1,8 +1,5 @@
 class AuthorizeController < ApplicationController
   
-  require 'rubygems'
-  require 'rest-client'
-
 # http://developers.facebook.com/docs/api#authorization
 # 
 # Telephone Oauth login
@@ -38,8 +35,6 @@ class AuthorizeController < ApplicationController
   def new
     
     oauthurl = "https://graph.facebook.com/oauth/authorize?client_id=104425026288823&redirect_uri=http://telephone.heroku.com/oauth_redirect"
-    # RestClient.get oauthurl
-    
     redirect_to oauthurl
         
   end

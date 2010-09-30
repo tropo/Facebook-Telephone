@@ -43,6 +43,23 @@
 	</div>
 	</div>
 
+	<div id="inline_phone" style="display: none">
+	<div style="width: 450px">
+	<%= link_to_close_redbox(raw('<img src="/images/close-btn.png" align="right" width="24" height="24" class="close-btn" border="0">'), html_options = {}) %>
+	<center>
+		<h1>Your Number</h1><br/>
+		<div id="generalform">
+			<%= form_tag url_for(:controller => "facebook", :action => "numberupdate"), :id => "number-form", :remote => true do %>
+			  
+			  <%= text_field_tag "phonenumber" %><br />
+			  <br />
+			  <%= submit_tag "Update" %>
+			<% end %>
+		</div>
+	</center>
+	</div>
+	</div>
+
 <%= yield %>
 
 </body>

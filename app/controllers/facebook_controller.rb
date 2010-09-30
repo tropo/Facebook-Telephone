@@ -61,11 +61,18 @@ class FacebookController < ApplicationController
   
   def update_phonoaddress
     @user = User.find_by_facebookid(session["id"])
-    @user.phonoaddress = params[:mysession]      
+    @user.sip = params[:mysession]      
     @user.save
     
     render :update do |page|
       # page.alert "phono address:  #{@user.phonoaddress}"
+    end
+  end
+  
+  def numberupdate
+    render :update do |page|
+      # page.alert "phono address:  #{@user.phonoaddress}"
+      page.RedBox.close(); 
     end
   end
 

@@ -5,7 +5,15 @@
 	<p><%= image_tag 'http://graph.facebook.com/' + @user.facebookid + '/picture'%>
 	Welcome <%=@user.name%>! </p>
 	<p>
-	<%=button_to_function "Phonebook", visual_effect(:toggle_slide, "phonebook", :duration => 0.5) %>
+	<% if @user.phonenumber %>
+		<% phonenumber = @user.phonenumber %>
+		<%=button_to_function @user.phonenumber, visual_effect(:toggle_slide, "setnumber", :duration => 0.5) %>
+	<% else %>
+		<%#button_to_function 'Add Your Telephone Number', visual_effect(:toggle_slide, "setnumber", :duration => 0.5) %>
+		<%= button_to_redbox('Add Your Telephone Number', :inline_phone, html_options = {})%>
+	<% end %>
+	
+	<%=button_to_function "Friends with Telephone", visual_effect(:toggle_slide, "phonebook", :duration => 0.5) %>
 	<%=button_to_function "Launch Telephone", "popitup('/telephone')" %>
 	<!-- <a href="#" onclick="popitup('/phono')">Launch Telephone</a> -->
 	</p>
@@ -13,7 +21,12 @@
 	<div id="phonebook" style="display: none;">
 	<% if !@friends.nil? %>	
 	<% @friends["data"].each do |friend| %>
-		<%= link_to_redbox(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), :inline_invite, html_options = {})%>		
+		<% telephoneuser = User.find_by_facebookid(friend["id"])%>
+		<% if telephoneuser %>
+		<%# link_to_redbox(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), :inline_invite, html_options = {})%>		
+		<%= link_to(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), nil, :onclick => "popitup('/telephone/' + telephoneuser.phonenumber.to_s)")%>		
+		
+		<% end %>
 		<%# image_tag 'http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]%>
 	<% end %>
 	<% end %>
@@ -25,8 +38,10 @@
 	
 <% end %>	
 
+<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fapps.facebook.com%2Ftelephone%2F&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+
 <p>
-	Facebook Telephone is a real telephone except it lives on the web - like you.  Best of all, it's absolutely <b>FREE</b>!
+	Telephone is a real telephone that it lives on the web - like you.  Best of all, it's absolutely <b>FREE</b>!
 </p>
 <p>
 	Our service is currently in beta but you can place phone calls to any United States or Canadian number for free.  We are working the ability to call your Facebook friends online (browser-to-browser) and the ability to receive inbound calls via this phone as long as the little window pop-out is running.
