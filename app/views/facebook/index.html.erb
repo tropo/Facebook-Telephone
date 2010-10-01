@@ -5,6 +5,8 @@
 	<p><%= image_tag 'http://graph.facebook.com/' + @user.facebookid + '/picture'%>
 	Welcome <%=@user.name%>! </p>
 	<p>
+		<%=button_to_function "App Home", "window.location = 'http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started'" %>
+		
 	<% if @user.phonenumber %>
 		<% phonenumber = @user.phonenumber %>
 		<%#button_to_function @user.phonenumber, visual_effect(:toggle_slide, "setnumber", :duration => 0.5) %>
@@ -35,7 +37,10 @@
 	
 <% else %>	
 
-	<p><%=button_to_function "Authorize", "window.location = '/authorize/new'" %></p>
+	<p>
+	<%=button_to_function "App Home", "window.location = 'http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started'" %>
+	<%=button_to_function "Authorize", "window.location = '/authorize/new'" %>
+	</p>
 	
 <% end %>	
 
@@ -53,4 +58,7 @@
 	<% if @user %>
 	<a href="#" onclick="popitup('/phono')">Launch</a> your new telephone now! (Note: This application works best when used with headphones to stop the echoing.)
 	<% end %>
+</p>
+<p>
+	<%# link_to "update flash remember settings", "http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html"%>
 </p>
