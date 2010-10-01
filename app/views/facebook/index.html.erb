@@ -1,11 +1,10 @@
-<h1>Telephone</h1>
+<h1>Telephone (<%=link_to "App Home", "http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started", {:target=>"_parent"} %>)</h1>
 
 <% if @user %>
 
 	<p><%= image_tag 'http://graph.facebook.com/' + @user.facebookid + '/picture'%>
 	Welcome <%=@user.name%>! </p>
 	<p>
-		<%=link_to "App Home", "http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started", {:target=>"_new"} %>
 		
 	<% if @user.phonenumber %>
 		<% phonenumber = @user.phonenumber %>
@@ -38,7 +37,7 @@
 <% else %>	
 
 	<p>
-		<%=link_to "App Home", "http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started", {:target=>"_new"} %>
+		
 	<%=button_to_function "Authorize", "window.location = '/authorize/new'" %>
 	</p>
 	
