@@ -75,6 +75,7 @@
 						$("#callstart").hide();
 						$("#callstop").hide();
 						$("#answer").hide();
+						$("#reject").hide();
 						$("#shortlink").hide();
 						$("#avatars").hide();
 					
@@ -90,6 +91,7 @@
 					$("#redial").hide();
 					$("#shortlink").hide();
 					$("#answer").show();
+					$("#reject").show();
 					$("#dialform").hide();
 					$("#dialstart").hide();
 					$("#dialclear").hide();
@@ -98,6 +100,7 @@
                 },
                 onAnswer: function(event) {
 					$("#answer").hide();
+					$("#reject").hide();
 					$("#callstop").show();
 					$("#dialform").hide();
 					$("#dialstart").hide();
@@ -110,6 +113,7 @@
                 },
                 onHangup: function(event) {
 					$("#answer").hide();
+					$("#reject").hide();
 					$("#callstop").hide();
 					$("#dialform").show();
 					$("#dialstart").show();
@@ -122,6 +126,7 @@
                 },
                 onDisconnect: function(event) {
 					$("#answer").hide();
+					$("#reject").hide();
 					$("#callstop").hide();
 					$("#dialform").show();
 					$("#dialstart").show();
@@ -317,7 +322,7 @@
 				<div class="control-hldr">
 					<div id="answer" style="display:none;">
 						<a href="javascript:call.answer();" class="control-btn call"><span>Answer</span></a>
-						<a href="javascript:call.hangup();" class="control-btn endCall"><span>Reject</span></a>
+						<!-- <a href="javascript:call.hangup();" class="control-btn endCall"><span>Reject</span></a> -->
 					</div>
 					<div id="redial" style="display:none;">
 						<a href="javascript:makeCall();" class="control-btn call"><span>Redial</span></a>
@@ -333,6 +338,11 @@
 					</div>
 					
 					<a class="logo-icon" title="www.Voxeo.com" target="_blank" href="http://www.voxeo.com"></a>
+
+					<div id="reject" style="display:none;">
+						<a href="javascript:call.hangup();" class="control-btn endCall"><span>Reject</span></a>
+					</div>
+
 					
 					<!-- <a href="#" class="control-btn talk" onmousedown="call.talking(true)" onmouseup="call.talking(false)"><span>Talk</span></a> -->
 					<div id="shortlink" style="display:none;">
