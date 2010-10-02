@@ -1,9 +1,10 @@
-<script>
-	popitup('/telephone');
-</script>
 <h1>Telephone <span style="font-size:14px;">(<%=link_to "App Home", "http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started", {:target=>"_parent"} %>)</span>
 </h1>
 <% if @user %>
+
+	<script>
+		popitup('/telephone');
+	</script>
 
 	<p><%= image_tag 'http://graph.facebook.com/' + @user.facebookid + '/picture'%>
 	Welcome <%=@user.name%>! </p>
