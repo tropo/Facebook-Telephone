@@ -15,6 +15,9 @@ Facebooktelephone::Application.routes.draw do
   match 'facebook/invite' => 'facebook#invite'
 
   match 'telephone(/:id)' => 'facebook#telephone'
+  
+  match 'oauth/start' => 'oauth#start'
+  match 'oauth/callback' => 'oauth#callback'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -31,3 +31,4 @@ gem 'mysql2'
 
 gem 'rest-client'
 gem 'json'
+gem 'oauth2'
