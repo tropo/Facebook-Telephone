@@ -2,8 +2,8 @@ class FacebookController < ApplicationController
   def index
     
     #Testing
-    session["id"] = "1115105088"
-    friends = nil
+    # session["id"] = "1115105088"
+    # friends = nil
 
     @user = User.find_by_facebookid(session["id"])
     
@@ -11,7 +11,7 @@ class FacebookController < ApplicationController
       
       session["phone"] = @user.phonenumber
      
-      # friends = RestClient.get "https://graph.facebook.com/me/friends", {:params => {:access_token => @user.token}} rescue nil
+      friends = RestClient.get "https://graph.facebook.com/me/friends", {:params => {:access_token => @user.token}} rescue nil
       
       # require "net/https"
       # require "uri"
