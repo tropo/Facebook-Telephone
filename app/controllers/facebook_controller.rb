@@ -2,7 +2,7 @@ class FacebookController < ApplicationController
   def index
     
     #Testing
-    session["id"] = "1115105088"
+    # session["id"] = "1115105088"
 
     @user = User.find_by_facebookid(session["id"])
     
