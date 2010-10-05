@@ -17,7 +17,7 @@ class OauthController < ApplicationController
     
     if !user_json.nil? 
       
-      result = JSON.parse(data)
+      result = JSON.parse(user_json)
 
       @user = User.find_by_facebookid(result["id"])
       if @user.nil?
