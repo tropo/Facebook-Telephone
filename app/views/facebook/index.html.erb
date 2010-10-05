@@ -1,7 +1,9 @@
-<h1>Telephone <span style="font-size:14px;">(<%=link_to "App Home", "http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started", {:target=>"_parent"} %>)</span>
+<h1>
+	Telephone <span style="font-size:14px;">(<%=link_to "App Home", "http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started", {:target=>"_parent"} %>)</span>
 </h1>
 <% if @user %>
 
+	<!-- Launch Telephone popup on page launch -->
 	<script>
 		popitup('/telephone');
 	</script>
@@ -13,17 +15,21 @@
 	<% if @user.phonenumber %>
 		<% phonenumber = @user.phonenumber %>
 		<%#button_to_function @user.phonenumber, visual_effect(:toggle_slide, "setnumber", :duration => 0.5) %>
-		<%= button_to_redbox(@user.phonenumber, :inline_phone, html_options = {})%>
+		<%= button_to_redbox('Private Number: ' + @user.phonenumber, :inline_phone, html_options = {})%>
 	<% else %>
 		<%#button_to_function 'Add Your Telephone Number', visual_effect(:toggle_slide, "setnumber", :duration => 0.5) %>
 		<%= button_to_redbox('Add Your Telephone Number', :inline_phone, html_options = {})%>
 	<% end %>
 	
 	<%=button_to_function "Friends with Telephone", visual_effect(:toggle_slide, "phonebook", :duration => 0.5) %>
+	<%=button_to_function "Invite Friends", visual_effect(:toggle_slide, "invitetophonebook", :duration => 0.5) %>
 	<%=button_to_function "Launch Telephone", "popitup('/telephone')" %>
 	<!-- <a href="#" onclick="popitup('/phono')">Launch Telephone</a> -->
 	
 	<%# link_to('call test', nil, :onclick => "popitup('/telephone/1115105088')")%>
+	<%# link_to_remote_redbox("send invite", :url=>{:partial=> 'invite'}, :html_options => {:id=>"1115105088"})%>		
+	<%= link_to_redbox("send invite", :inline_invite, :html_options => {:id=>"1115105088"})%>		
+	
 	
 	</p>
 	
@@ -40,6 +46,21 @@
 	<% end %>
 	<% end %>
 	</div>
+
+	<div id="invitetophonebook" style="display: none;">
+	<% if !@friends.nil? %>	
+	<% @friends["data"].each do |friend| %>
+		<% nontelephoneuser ||= User.find_by_facebookid(friend["id"])%>
+		<% if nontelephoneuser.nil? %>
+		<%= link_to_redbox(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), :inline_invite, html_options = {})%>		
+		<%# link_to(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), nil, :onclick => "popitup('/telephone/" + telephoneuser.facebookid + "')")%>		
+		
+		<% end %>
+		<%# image_tag 'http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]%>
+	<% end %>
+	<% end %>
+	</div>
+
 	
 <% else %>	
 
@@ -57,12 +78,12 @@
 	Telephone is a real telephone that it lives on the web - like you.  Best of all, it's absolutely <b>FREE</b> and your phone number is not exposed to Facebook users!
 </p>
 <p>
-	Our service is currently in beta but you can place real phone calls to your friends on Facebook (browser-to-browser) or any United States or Canadian number for free.  In order to receive inbound calls via this phone, you must launch Telephone and keep the little window pop-out running.
+	Telephone allows you to place real phone calls to your friends on Facebook (browser-to-browser) or to any <b>United States</b> or <b>Canadian</b> phone number for free!  You can also receive inbound Telephone calls from your friends on Facebook via Telephone (if your Telephone pop-up window is running) or via your private telephone number entered above.  
 </p>
 
 <p>
 	<% if @user %>
-	<a href="#" onclick="popitup('/phono')">Launch</a> your new telephone now! (Note: This application works best when used with headphones to stop the echoing.)
+	<a href="#" onclick="popitup('/phono')">Launch</a> your new Telephone now! (Note: This application works best when used with headphones to stop the echoing.)
 	<% end %>
 </p>
 <p>

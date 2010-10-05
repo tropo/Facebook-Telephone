@@ -22,7 +22,7 @@ module RedboxHelper
     hidden_content_id = "hidden_content_#{id}"
     link_to_remote_options = redbox_remote_options(link_to_remote_options, hidden_content_id)
     
-    return build_hidden_content(hidden_content_id) + link_to_remote(name, link_to_remote_options, html_options)
+    return build_hidden_content(hidden_content_id) + link_to(name, link_to_remote_options, html_options, :remote=>true)
   end
   
   def link_to_close_redbox(name, html_options = {})

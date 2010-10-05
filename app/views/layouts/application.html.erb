@@ -31,10 +31,10 @@
 	<%= link_to_close_redbox(raw('<img src="/images/close-btn.png" align="right" width="24" height="24" class="close-btn" border="0">'), html_options = {}) %>
 	<center>
 		<h1>Invitation</h1><br/>
+		<%= %>
 		<div id="generalform">
 			<%= form_tag url_for(:controller => "facebook", :action => "invite"), :id => "tool-form", :remote => true do %>
-			  <label>Message:</label><br />
-			  <%= text_area_tag "message", "Check out Facebook's new telephone!  http://apps.facebook.com/telephone", {:cols => 40, :rows => 5} %><br />
+			  <%= text_area_tag "message", "Check out the new Telephone on Facebook!  http://apps.facebook.com/telephone", {:cols => 40, :rows => 5} %><br />
 			  <br />
 			  <%= submit_tag "Send" %>
 			<% end %>

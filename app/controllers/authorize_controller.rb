@@ -34,6 +34,7 @@ class AuthorizeController < ApplicationController
   
   def new
     
+    #Consider adding this URL to Facebook app starting URL
     oauthurl = "https://graph.facebook.com/oauth/authorize?client_id=104425026288823&redirect_uri=http://telephone.heroku.com/oauth_redirect"
     redirect_to oauthurl
         
@@ -42,13 +43,29 @@ class AuthorizeController < ApplicationController
   def oauth_redirect
     code = params[:code]
     
-    # begin
-      resp = RestClient.get "https://graph.facebook.com/oauth/access_token", {:params => {:client_id => "104425026288823", :redirect_uri => 'http://telephone.heroku.com/oauth_redirect', :client_secret => 'a4807180f4586dc5df989d4d03e242b1', :code => code}}
-    # rescue => e
-    #   puts e.response
-    # end
+    # # begin
+    #   resp = RestClient.get "https://graph.facebook.com/oauth/access_token", {:params => {:client_id => "104425026288823", :redirect_uri => 'http://telephone.heroku.com/oauth_redirect', :client_secret => 'a4807180f4586dc5df989d4d03e242b1', :code => code}}
+    # # rescue => e
+    # #   puts e.response
+    # # end
 
-    if resp.body
+    require "net/https"
+    require "uri"
+    begin
+      uri = URI.parse("https://graph.facebook.com/oauth/access_token?client_id=104425026288823&client_secret=a4807180f4586dc5df989d4d03e242b1&code=" + code + "&redirect_uri=http://telephone.heroku.com/oauth_redirect")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      request = Net::HTTP::Get.new(uri.request_uri)
+      resp = http.request(request)
+    rescue => e
+      resp = nil
+    end
+    
+
+    sleep 1 # Is this necessary?
+    
+    if if !resp.nil? and resp.body
       mytoken = resp.body.gsub("access_token=", "")
 
       accesstoken = mytoken.split("&")[0]
@@ -59,17 +76,21 @@ class AuthorizeController < ApplicationController
         # userresp = RestClient.get "https://graph.facebook.com/me", {:params => {:access_token => URI.escape(accesstoken), :expires => expires}} 
         
 
-        require "net/https"
-        require "uri"
-        uri = URI.parse("https://graph.facebook.com/me?access_token=" + URI.escape(mytoken))
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Get.new(uri.request_uri)
-        userresp = http.request(request)
+      # require "net/https"
+      # require "uri"
+      begin
+        uri2 = URI.parse("https://graph.facebook.com/me?access_token=" + URI.escape(mytoken))
+        http2 = Net::HTTP.new(uri2.host, uri2.port)
+        http2.use_ssl = true
+        http2.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        request2 = Net::HTTP::Get.new(uri2.request_uri)
+        userresp = http2.request2(request)
+      rescue => e
+        userresp = nil
+      end
         
 
-      if userresp.body
+      if !userresp.nil? and userresp.body
         data = userresp.body
         result = JSON.parse(data)
         

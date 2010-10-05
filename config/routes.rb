@@ -12,6 +12,7 @@ Facebooktelephone::Application.routes.draw do
   match 'oauth_redirect' => 'authorize#oauth_redirect'
 
   match 'facebook/update_phonoaddress' => 'facebook#update_phonoaddress'
+  match 'facebook/invite' => 'facebook#invite'
 
   match 'telephone(/:id)' => 'facebook#telephone'
 

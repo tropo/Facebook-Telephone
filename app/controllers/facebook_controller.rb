@@ -2,7 +2,7 @@ class FacebookController < ApplicationController
   def index
     
     #Testing
-    # session["id"] = "1115105088"
+    session["id"] = "1115105088"
 
     @user = User.find_by_facebookid(session["id"])
     
@@ -10,7 +10,20 @@ class FacebookController < ApplicationController
       
       session["phone"] = @user.phonenumber
      
-      friends = RestClient.get "https://graph.facebook.com/me/friends", {:params => {:access_token => @user.token}} rescue nil
+      # friends = RestClient.get "https://graph.facebook.com/me/friends", {:params => {:access_token => @user.token}} rescue nil
+      
+      require "net/https"
+      require "uri"
+      begin
+        uri = URI.parse("https://graph.facebook.com/me/friends?access_token=" + @user.token) 
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        request = Net::HTTP::Get.new(uri.request_uri)
+        friends = http.request(request)
+      rescue => e
+        friends = nil
+      end
 
       if !friends.nil? and friends.body
         data = friends.body
@@ -113,4 +126,8 @@ class FacebookController < ApplicationController
     end
   end
 
+  def invite
+    
+  end
+  
 end
