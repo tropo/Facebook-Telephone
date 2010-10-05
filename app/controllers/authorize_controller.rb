@@ -65,7 +65,7 @@ class AuthorizeController < ApplicationController
 
     sleep 1 # Is this necessary?
     
-    if if !resp.nil? and resp.body
+    if !resp.nil? and resp.body
       mytoken = resp.body.gsub("access_token=", "")
 
       accesstoken = mytoken.split("&")[0]
