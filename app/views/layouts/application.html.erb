@@ -15,6 +15,9 @@
 		var left = (screen.width/2)-(275/2);
 		var top = (screen.height/2)-(375/2);
 		newwindow=window.open(url,'name', 'height=375,width=275,toolbars=no,menubar=no,location=no,scrollbars=no,resizable=yes,status=no,top='+top+', left='+left);
+		
+		// newwindow=window.open(url,'name', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,resizable=no,copyhistory=no,scrollbars=no,height=375,width=275,left=0,top=0,screenX=0,screenY=0');
+		
 		if (window.focus) {newwindow.focus()}
 		return false;
 	}
@@ -61,6 +64,10 @@
 	</div>
 
 <%= yield %>
+
+<div id="footer">
+	<p>&copy; Voxeo</p>
+</div>
 
 </body>
 </html>

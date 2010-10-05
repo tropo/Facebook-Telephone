@@ -1,12 +1,13 @@
 <h1>
-	Telephone <span style="font-size:14px;">(<%=link_to "App Home", "http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started", {:target=>"_parent"} %>)</span>
+<%=image_tag 'spaz-icon-alpha.png', {:width=>"75"}%><br/>
+	Telephone <span style="font-size:18px;">(<%=link_to "App Home / Invite Friends", "http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started", {:target=>"_parent"} %>)</span>
 </h1>
 <% if @user %>
 
 	<!-- Launch Telephone popup on page launch -->
-	<script>
+	<!-- <script>
 		popitup('/telephone');
-	</script>
+	</script> -->
 
 	<p><%= image_tag 'http://graph.facebook.com/' + @user.facebookid + '/picture'%>
 	Welcome <%=@user.name%>! </p>
@@ -22,7 +23,7 @@
 	<% end %>
 	
 	<%=button_to_function "Friends with Telephone", visual_effect(:toggle_slide, "phonebook", :duration => 0.5) %>
-	<%=button_to_function "Invite Friends", visual_effect(:toggle_slide, "invitetophonebook", :duration => 0.5) %>
+	<%#button_to_function "Invite Friends", visual_effect(:toggle_slide, "invitetophonebook", :duration => 0.5) %>
 	<%=button_to_function "Launch Telephone", "popitup('/telephone')" %>
 	<!-- <a href="#" onclick="popitup('/phono')">Launch Telephone</a> -->
 	
@@ -76,17 +77,31 @@
 </p>
 
 <p>
-	Telephone is a real telephone that it lives on the web - like you.  Best of all, it's absolutely <b>FREE</b> and your phone number is not exposed to Facebook users!
+	<hr/>
+	<%=image_tag("coolphone2.gif", {:align=>"right"})%>
+	Telephone is a real telephone that it lives on the web - like you.  Best of all, it's absolutely <b>FREE</b> to make and receive phone calls online while not exposing your phone number to other Facebook users!  There is nothing to download - 
+
+<!-- <p>
+	Telephone allows you to place real phone calls to your friends on Facebook (browser-to-browser) or to any <b>United States</b> or <b>Canadian</b> phone number for free!  You can also receive inbound Telephone calls from your friends on Facebook via Telephone (if your Telephone pop-up window is running) or via your private telephone number entered above.  
+</p> -->
+
+<% if @user %>
+just follow these steps:</p>
+<p>
+	<%=image_tag("circle_1.gif", {:width=>"30"})%> <%= link_to_redbox('Add', :inline_phone, html_options = {})%> your mobile phone number.
 </p>
 <p>
-	Telephone allows you to place real phone calls to your friends on Facebook (browser-to-browser) or to any <b>United States</b> or <b>Canadian</b> phone number for free!  You can also receive inbound Telephone calls from your friends on Facebook via Telephone (if your Telephone pop-up window is running) or via your private telephone number entered above.  
+	<%=image_tag("circle_2.gif", {:width=>"30"})%> <%=link_to_function "Find", visual_effect(:toggle_slide, "phonebook", :duration => 0.5) %> Facebook friends using Telephone. Click on your friend's photo to call them or simply launch Telephone to make and receive real phone calls!
+</p>
+<p>	
+	<%=image_tag("circle_3.gif", {:width=>"30"})%> <a href="#" onclick="popitup('/telephone')">Launch</a> your new Telephone now! (Note: This application works best when used with headphones to stop the echoing.)
 </p>
 
-<p>
-	<% if @user %>
-	<a href="#" onclick="popitup('/phono')">Launch</a> your new Telephone now! (Note: This application works best when used with headphones to stop the echoing.)
-	<% end %>
-</p>
+<% else %>
+just Authorize the app!</p>
+<p><%=button_to_function "Authorize", "window.location = '/oauth/start'" %></p>
+<% end %>
+
 <p>
 	<%# link_to "update flash remember settings", "http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html"%>
 </p>

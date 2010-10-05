@@ -1,3 +1,6 @@
+# http://github.com/intridea/oauth2
+# http://github.com/intridea/oauth2/wiki
+
 class OauthController < ApplicationController
   def start
     redirect_to client.web_server.authorize_url(
