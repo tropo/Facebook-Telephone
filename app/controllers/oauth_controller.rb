@@ -17,25 +17,27 @@ class OauthController < ApplicationController
     
     if !user_json.nil? 
       
-      @user = User.find_by_facebookid(user_json["id"])
+      result = JSON.parse(data)
+
+      @user = User.find_by_facebookid(result["id"])
       if @user.nil?
         @user = User.new
       end
 
-      @user.facebookid = user_json["id"]
-      @user.name = user_json["name"]
-      @user.firstname = user_json["first_name"]
-      @user.lastname = user_json["last_name"]
-      @user.link = user_json["link"]
-      @user.gender = user_json["gender"]
-      @user.email = user_json["email"]
-      @user.timezone = user_json["timezone"]
-      @user.local = user_json["locale"]
-      @user.verified = user_json["verified"]
+      @user.facebookid = result["id"]
+      @user.name = result["name"]
+      @user.firstname = result["first_name"]
+      @user.lastname = result["last_name"]
+      @user.link = result["link"]
+      @user.gender = result["gender"]
+      @user.email = result["email"]
+      @user.timezone = result["timezone"]
+      @user.local = result["locale"]
+      @user.verified = result["verified"]
       @user.token = access_token.token
       @user.save
       
-      session["id"] = user_json["id"]
+      session["id"] = result["id"]
       session["usertoken"] = access_token.token
 
     end
