@@ -40,6 +40,8 @@ class OauthController < ApplicationController
 
     end
     
+    redirect_to '/facebook'
+    
   end
 
   protected
