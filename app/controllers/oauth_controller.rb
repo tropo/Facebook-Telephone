@@ -42,7 +42,7 @@ class OauthController < ApplicationController
 
     end
     
-    redirect_to '/facebook'
+    redirect_to 'http://telephone.heroku.com/facebook'
     
   end
 
