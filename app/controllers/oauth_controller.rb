@@ -14,9 +14,6 @@ class OauthController < ApplicationController
     )
 
     user_json = access_token.get('/me')
-    # in reality you would at this point store the access_token.token value as well as 
-    # any user info you wanted
-    # render :json => user_json
     
     if !user_json.nil? 
       

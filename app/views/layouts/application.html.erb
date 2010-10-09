@@ -25,10 +25,31 @@
 	// -->
 	</script>
 	
-	
   <%= yield(:head) %>
+
 </head>
 <body>
+	
+<div id="container">	
+<div id="sidebar">
+	<p><h2><%=image_tag 'spaz-icon-alpha.png', {:width=>"75"}%><br/>
+	
+	<%=link_to "Telephone", "/" %>
+	</h2>
+	<center>
+	<%#link_to "Facebook App", "http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started", {:target=>"_parent"} %>
+	<%=link_to "Terms", "terms" %> | <%=link_to "Policy", "policy" %></center>
+	<%#link_to "App Home", "http://www.facebook.com/apps/application.php?id=104425026288823&v=page_getting_started", {:target=>"_parent"} %></p>
+	<p><br/>
+		Like Button
+	</p>
+	<p>
+		Share Link
+	</p>
+</div>		
+
+<div id="content">
+	
 	<div id="inline_invite" style="display: none">
 	<div style="width: 450px">
 	<%= link_to_close_redbox(raw('<img src="/images/close-btn.png" align="right" width="24" height="24" class="close-btn" border="0">'), html_options = {}) %>
@@ -62,12 +83,16 @@
 	</center>
 	</div>
 	</div>
+	
 
-<%= yield %>
+	<%= yield %>
 
-<div id="footer">
-	<p>&copy; Voxeo</p>
 </div>
+</div>
+
+<!-- <div id="footer">
+	<p>&copy; Voxeo</p>
+</div> -->
 
 </body>
 </html>

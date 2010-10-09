@@ -13,6 +13,29 @@ pre {
   font-size: 11px;
 }
 
+#container {
+	width: 760px;
+}
+
+#sidebar {
+  background-color: #eee;
+  margin: 10px;
+  padding: 10px;
+  font-size: 12px;
+width: 200px;
+height: 500px;
+float: left;
+text-align: center;
+}
+
+#content {
+  background-color: #FFF;
+  font-size: 14px;
+width: 520px;
+height: auto;
+float: right;
+}
+
 a { color: #00f; 
 text-decoration:underline; }
 	
@@ -73,6 +96,7 @@ div.field, div.actions {
 /*	background: #0098DB url(/images/img08blue.gif) repeat-x;*/
 	color: #999;
 	font-size: 1.5em;
+	float: bottom;
 }
 
 #footer p {

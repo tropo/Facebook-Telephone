@@ -31,7 +31,7 @@
 		var dialString = document.getElementById("dialstring");
 		var destString = document.getElementById("destinationTxt");
 		var didString = document.getElementById("did");
-		destString.value = "app:9991443313"
+		// destString.value = "app:9991443313"
 		if(dialString.value.substring(0,1) == '1')
 		{
 			didString.value = dialString.value;
@@ -39,6 +39,16 @@
 		else
 		{
 			didString.value = '1' + dialString.value;
+		}
+		
+		// Determine SIP or PSTN
+		if(dialString.value.substring(0,1) == 's') 
+		{
+			destString.value = dialString.value;
+		}
+		else
+		{
+			destString.value = "app:9991443313";
 		}
 		
 		makeCall();
@@ -289,7 +299,7 @@
 				    <input type="hidden" id="callState" />
 				    <input type="hidden" id="sessionId" />
 
-					<input type="text" id="dialstring">
+					<input type="text" id="dialstring" value="<%=@display-%>">
 					<input type="hidden" id="destinationTxt" value="<%=@phone%>" />
 					<input type="hidden" id="did" value="<%=@did%>" />
 					<!-- <a href="javascript:window.close()"><img src="/images/delete.gif" align="right" width="25" border="0"></a> -->

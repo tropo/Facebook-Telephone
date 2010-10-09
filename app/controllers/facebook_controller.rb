@@ -2,8 +2,8 @@ class FacebookController < ApplicationController
   def index
     
     #Testing
-    # session["id"] = "1115105088"
-    # friends = nil
+    session["id"] = "1115105088"
+    friends = nil
 
     @user = User.find_by_facebookid(session["id"])
     
@@ -31,6 +31,8 @@ class FacebookController < ApplicationController
         @friends = JSON.parse(friends.body)
       end
       
+    else
+      redirect_to "/oauth/start", {:target=>"_parent"}
     end 
     
   end
@@ -73,33 +75,42 @@ class FacebookController < ApplicationController
     
     # Look up user by id and call their SIP address and posted number
     userid = params[:id]
-    if userid
-      @user = User.find_by_facebookid(userid)
-      if @user
-        @transfermode = "one" # "all" = simultaneous rings or "one" = one phone at a time
-        @did = ""
-        if @user.sip
-          sipraw = @user.sip
-          if sipraw.index("@") and !sipraw.index("sip:")
-            sipraw = "sip:" + sipraw
-          end
-          @did << sipraw + ","
+    if userid      
+      if userid.index("@")
+        if !userid.index("sip:")
+          @phone = "sip:" + userid
+        else
+          @phone = userid
         end
-        if @user.phonenumber
-          phoneraw = @user.phonenumber.gsub("-", "").gsub("(", "").gsub(")", "").gsub("+", "")
-          if phoneraw.index("@") and !phoneraw.index("sip:")
-            phoneraw = "sip:" + phoneraw
+        @did = userid
+        @display = userid
+      else
+        @user = User.find_by_facebookid(userid)
+        if @user
+          @transfermode = "one" # "all" = simultaneous rings or "one" = one phone at a time
+          @did = ""
+          if @user.sip
+            sipraw = @user.sip
+            if sipraw.index("@") and !sipraw.index("sip:")
+              sipraw = "sip:" + sipraw
+            end
+            @did << sipraw + ","
           end
-          if isNumeric(phoneraw) and phoneraw.length == 10
-            phoneraw = "1" + phoneraw
+          if @user.phonenumber
+            phoneraw = @user.phonenumber.gsub("-", "").gsub("(", "").gsub(")", "").gsub("+", "")
+            if phoneraw.index("@") and !phoneraw.index("sip:")
+              phoneraw = "sip:" + phoneraw
+            end
+            if isNumeric(phoneraw) and phoneraw.length == 10
+              phoneraw = "1" + phoneraw
+            end
+            @did << phoneraw + ","
           end
-          @did << phoneraw + ","
+          @did = @did.chop #remove last comma from @did string
+          @phone = "app:9991443419"
         end
-        @did = @did.chop #remove last comma from @did string
-        @phone = "app:9991443419"
       end
     end
-    puts @did
     render 'phono', :layout => false
     
   end

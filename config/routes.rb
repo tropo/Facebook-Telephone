@@ -14,10 +14,14 @@ Facebooktelephone::Application.routes.draw do
   match 'facebook/update_phonoaddress' => 'facebook#update_phonoaddress'
   match 'facebook/invite' => 'facebook#invite'
 
-  match 'telephone(/:id)' => 'facebook#telephone'
+  match 'telephone(/:id)' => 'facebook#telephone' # WHY IS THE PERIOD GETTING CHOPPED OFF THE ID?
   
   match 'oauth/start' => 'oauth#start'
   match 'oauth/callback' => 'oauth#callback'
+
+  match 'terms' => 'facebook#terms'
+  match 'policy' => 'facebook#policy'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
