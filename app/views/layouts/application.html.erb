@@ -44,7 +44,8 @@
 	<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fapps.facebook.com%2Ftelephone&amp;layout=button_count&amp;show_faces=true&amp;width=100&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
 	</p>
 	<p>
-		Share Link
+		<!-- <a href="http://www.facebook.com/sharer.php?u=http://apps.facebook.com/telephone&amp;t=I just discovered Facebook Telephone a new telephone service for Facebook! http://apps.facebook.com/telephone" target="_parent"><button type="button"><span>Share link</span></button> </a> -->
+		<%= button_to_redbox('Share link', :inline_share, html_options = {})%>
 	</p>
 </div>		
 
@@ -80,6 +81,17 @@
 			  <%= submit_tag "Update" %>
 			<% end %>
 		</div>
+	</center>
+	</div>
+	</div>
+
+	<div id="inline_share" style="display: none">
+	<div style="width: 450px">
+	<%= link_to_close_redbox(raw('<img src="/images/close-btn.png" align="right" width="24" height="24" class="close-btn" border="0">'), html_options = {}) %>
+	<center>
+		<iframe src="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fapps.facebook.com%2Ftelephone&amp;t=I just discovered Facebook Telephone a new telephone service for Facebook! http%3A%2F%2Fapps.facebook.com%2Ftelephone" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:400px; height:100px;" allowTransparency="true"></iframe>
+		
+		
 	</center>
 	</div>
 	</div>
