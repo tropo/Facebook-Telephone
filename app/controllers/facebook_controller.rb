@@ -32,7 +32,7 @@ class FacebookController < ApplicationController
       end
       
     else
-      redirect_to "http://telephone.heroku.com/oauth/start" #, {:target=>"_parent"}
+      redirect_to "/oauth/start" #, {:target=>"_parent"}
     end 
     
   end
