@@ -26,8 +26,8 @@
 	* Created: June 14, 2010
 */
 body{
-	background:#000235;
-/*	background-color: #4B7399;*/
+	background:#000235 url("../images/spaz-icon-alpha_48.png") no-repeat 45px 0;
+/*	background:#000235;*/
 	font-family: Helvetica;
 	font-size:1em;
 	margin:0;
@@ -336,8 +336,8 @@ textarea.chatInput{
 	background:#FFF;
 }
 
-#dialform input:focus, select:focus, textarea:focus {background: none repeat scroll 0 0 #FFFF99; line-height:15px; font-size: 15px;}
-#dialform input, select, textarea {line-height:15px; font-size: 15px; }
+#dialform input:focus, select:focus, textarea:focus {background: none repeat scroll 0 0 #FFFF99; line-height:15px; font-size: 18px;}
+#dialform input, select, textarea {line-height:15px; font-size: 18px; }
 
 #dialform button, input{
 	padding:5px 10px;

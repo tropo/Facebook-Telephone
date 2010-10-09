@@ -41,7 +41,7 @@ text-decoration:underline; }
 	
 a:visited { color: #00f; 
 text-decoration:underline; }
-a:hover { color: #fff; background-color:#00f; }
+a:hover { color: #fff; background-color:#000; }
 
 div.field, div.actions {
   margin-bottom: 10px;

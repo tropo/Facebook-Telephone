@@ -2,8 +2,8 @@ class FacebookController < ApplicationController
   def index
     
     #Testing
-    session["id"] = "1115105088"
-    friends = nil
+    # session["id"] = "1115105088"
+    # friends = nil
 
     @user = User.find_by_facebookid(session["id"])
     
@@ -110,12 +110,15 @@ class FacebookController < ApplicationController
           @phone = "app:9991443419"
         end
       end
+    else
+      @display = "Enter number to dial"
     end
     render 'phono', :layout => false
     
   end
   
   def update_phonoaddress
+    # Receives AJAX call to report telephone SIP address
     @user = User.find_by_facebookid(session["id"])
     @user.sip = params[:mysession]      
     @user.save
@@ -136,10 +139,6 @@ class FacebookController < ApplicationController
       # page.alert "phono address:  #{@user.phonoaddress}"
       page.RedBox.close(); 
     end
-  end
-
-  def invite
-    
   end
   
 end
