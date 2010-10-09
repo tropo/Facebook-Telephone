@@ -31,8 +31,8 @@ class FacebookController < ApplicationController
         @friends = JSON.parse(friends.body)
       end
       
-    else
-      redirect_to "/oauth/start" #, {:target=>"_parent"}
+    # else
+    #   redirect_to "http://telephone.heroku.com/oauth/start" #, {:target=>"_parent"}
     end 
     
   end
