@@ -111,7 +111,8 @@ class FacebookController < ApplicationController
         end
       end
     else
-      @display = "Enter number to dial"
+      # @display = "Enter number to dial"
+      @display = ""
     end
     render 'phono', :layout => false
     

@@ -336,8 +336,8 @@ textarea.chatInput{
 	background:#FFF;
 }
 
-#dialform input:focus, select:focus, textarea:focus {background: none repeat scroll 0 0 #FFFF99; line-height:15px; font-size: 18px;}
-#dialform input, select, textarea {line-height:15px; font-size: 18px; }
+#dialform input:focus, select:focus, textarea:focus {background: none repeat scroll 0 0 #FFFF99; line-height:15px; font-size: 15px;}
+#dialform input, select, textarea {line-height:15px; font-size: 15px; }
 
 #dialform button, input{
 	padding:5px 10px;
