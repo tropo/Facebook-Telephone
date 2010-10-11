@@ -18,6 +18,7 @@ Facebooktelephone::Application.routes.draw do
   
   match 'oauth/start' => 'oauth#start'
   match 'oauth/callback' => 'oauth#callback'
+  match 'oauth' => 'oauth#index'
 
   match 'terms' => 'facebook#terms'
   match 'policy' => 'facebook#policy'
