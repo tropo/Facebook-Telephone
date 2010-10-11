@@ -12,7 +12,7 @@
 	<% if @user.phonenumber %>
 		<% phonenumber = @user.phonenumber %>
 		<%#button_to_function @user.phonenumber, visual_effect(:toggle_slide, "setnumber", :duration => 0.5) %>
-		<%= button_to_redbox('Private Number: ' + @user.phonenumber, :inline_phone, html_options = {})%>
+		<%= button_to_redbox(@user.phonenumber, :inline_phone, html_options = {})%>
 	<% else %>
 		<%#button_to_function 'Add Your Telephone Number', visual_effect(:toggle_slide, "setnumber", :duration => 0.5) %>
 		<%= button_to_redbox('Add Your Number', :inline_phone, html_options = {})%>
