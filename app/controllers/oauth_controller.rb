@@ -3,10 +3,6 @@
 
 class OauthController < ApplicationController
   
-  def index
-    
-  end
-  
   def start
     redirect_to client.web_server.authorize_url(
       :redirect_uri => 'http://telephone.heroku.com/oauth/callback'
