@@ -34,7 +34,7 @@
 	<% if @friends.nil? %>	
 	<p>We are not able to access your friends at this time.</p>
 	<% else %>
-	<p><span style="color: #F00;"><center>Click on your friend's photo below to call them!</center></span></p>
+	<p><center><span style="color: #F00;">Click on your friend's photo below to call them!</span></center></p>
 	<% @friends["data"].each do |friend| %>
 		<% telephoneuser = User.find_by_facebookid(friend["id"])%>
 		<% if telephoneuser %>
