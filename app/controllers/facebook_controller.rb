@@ -5,35 +5,47 @@ class FacebookController < ApplicationController
     # session["id"] = "1115105088"
     # friends = nil
 
-    @user = User.find_by_facebookid(session["id"])
-    
-    if @user
+    if session["id"]
       
-      session["phone"] = @user.phonenumber
-     
-      friends = RestClient.get "https://graph.facebook.com/me/friends", {:params => {:access_token => @user.token}} rescue nil
-      
-      # require "net/https"
-      # require "uri"
-      # begin
-      #   uri = URI.parse("https://graph.facebook.com/me/friends?access_token=" + @user.token) 
-      #   http = Net::HTTP.new(uri.host, uri.port)
-      #   http.use_ssl = true
-      #   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      #   request = Net::HTTP::Get.new(uri.request_uri)
-      #   friends = http.request(request)
-      # rescue => e
-      #   friends = nil
-      # end
-      
-      
-      if !friends.nil? and friends.body
-        @friends = JSON.parse(friends.body)
+      # Check to see if it's me 
+      user_json = access_token.get('/me')
+      if !user_json.nil? 
+        result = JSON.parse(user_json)
+        session["id"] = result["id"]
+      else
+        session["id"] = nil
       end
+
+      @user = User.find_by_facebookid(session["id"])
+    
+      if @user
       
-    # else
-    #   redirect_to "http://telephone.heroku.com/oauth/start" #, {:target=>"_parent"}
-    end 
+        session["phone"] = @user.phonenumber
+     
+        friends = RestClient.get "https://graph.facebook.com/me/friends", {:params => {:access_token => @user.token}} rescue nil
+      
+        # require "net/https"
+        # require "uri"
+        # begin
+        #   uri = URI.parse("https://graph.facebook.com/me/friends?access_token=" + @user.token) 
+        #   http = Net::HTTP.new(uri.host, uri.port)
+        #   http.use_ssl = true
+        #   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        #   request = Net::HTTP::Get.new(uri.request_uri)
+        #   friends = http.request(request)
+        # rescue => e
+        #   friends = nil
+        # end
+      
+      
+        if !friends.nil? and friends.body
+          @friends = JSON.parse(friends.body)
+        end
+      
+      # else
+      #   redirect_to "http://telephone.heroku.com/oauth/start" #, {:target=>"_parent"}
+      end 
+    end
     
   end
 
