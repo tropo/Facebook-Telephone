@@ -7,14 +7,14 @@ class FacebookController < ApplicationController
 
     if session["id"]
       
-      # Check to see if it's me 
-      user_json = access_token.get('/me')
-      if !user_json.nil? 
-        result = JSON.parse(user_json)
-        session["id"] = result["id"]
-      else
-        session["id"] = nil
-      end
+      # # Check to see if it's me 
+      # user_json = access_token.get('/me')
+      # if !user_json.nil? 
+      #   result = JSON.parse(user_json)
+      #   session["id"] = result["id"]
+      # else
+      #   session["id"] = nil
+      # end
 
       @user = User.find_by_facebookid(session["id"])
     
