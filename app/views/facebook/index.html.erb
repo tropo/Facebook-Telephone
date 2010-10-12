@@ -31,10 +31,14 @@
 	</p>
 	
 	<div id="phonebook" style="display: none;">
-	<% if !@friends.nil? %>	
+	<% if @friends.nil? %>	
+	<p>We are not able to access your friends at this time.</p>
+	<% else %>
+	<p>Click your friend's photo below to call them!</p>
 	<% @friends["data"].each do |friend| %>
 		<% telephoneuser = User.find_by_facebookid(friend["id"])%>
 		<% if telephoneuser %>
+
 		<%# link_to_redbox(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), :inline_invite, html_options = {})%>		
 		<%= link_to(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), nil, :onclick => "popitup('/telephone/" + telephoneuser.facebookid + "')")%>		
 		
@@ -45,7 +49,7 @@
 	</div>
 
 	<div id="invitetophonebook" style="display: none;">
-	<% if !@friends.nil? %>	
+	<% if false #!@friends.nil? %>	
 	<% @friends["data"].each do |friend| %>
 		<% nontelephoneuser ||= User.find_by_facebookid(friend["id"])%>
 		<% if nontelephoneuser.nil? %>
