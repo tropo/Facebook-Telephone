@@ -34,7 +34,7 @@
 	<% if @friends.nil? %>	
 	<p>We are not able to access your friends at this time.</p>
 	<% else %>
-	<p>Click your friend's photo below to call them!</p>
+	<p><span style="color: #F00;">Click on your friend's photo below to call them!</span></p>
 	<% @friends["data"].each do |friend| %>
 		<% telephoneuser = User.find_by_facebookid(friend["id"])%>
 		<% if telephoneuser %>
@@ -94,8 +94,11 @@ just follow these steps:</p>
 	<%=image_tag("Circle_2.gif", {:width=>"30"})%> <%=link_to_function "Find", visual_effect(:toggle_slide, "phonebook", :duration => 0.5) %> Facebook friends using Telephone. Click on your friend's photo to call them or simply launch Telephone to make and receive real phone calls!
 </p>
 <p>	
-	<%=image_tag("Circle_3.gif", {:width=>"30"})%> <a href="#" onclick="popitup('/telephone')">Launch</a> your new Telephone now! <br/>(Note: This application works best when used with headphones to stop the echoing. You can also click the "remember" button on the security popup.)
+	<%=image_tag("Circle_3.gif", {:width=>"30"})%> <a href="#" onclick="popitup('/telephone')">Launch</a> your new Telephone now! 
 </p>
+
+<p>(Note: This application works best when used with headphones to stop the echoing. You can also click the "remember" button on the security popup.)</p>
+
 
 <% else %>
 just Authorize the app!</p>
