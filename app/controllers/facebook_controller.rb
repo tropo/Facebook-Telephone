@@ -120,7 +120,8 @@ class FacebookController < ApplicationController
           end
           @did = @did.chop #remove last comma from @did string
           # @phone = "app:9991443419" # TROPO
-          @phone = "app:9991457150" # CCXML
+          # @phone = "app:9991457150" # CCXML
+          @phone = "sip:9991457150@sbcexternal.orl.voxeo.net"
         end
       end
     else
