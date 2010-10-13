@@ -43,7 +43,7 @@
 		<% if telephoneuser %>
 
 		<%# link_to_redbox(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), :inline_invite, html_options = {})%>		
-		<%= link_to(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), nil, :onclick => "popitup('/telephone/" + telephoneuser.facebookid + "')")%>		
+		<%= link_to(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), "/telephone/" + telephoneuser.facebookid, :popup => ['name', 'height=375,width=275,toolbars=no,menubar=no,location=no,scrollbars=no,resizable=yes,status=no'], :confirm => 'Call " + friend["name"] + "?')%>		
 		
 		<% end %>
 		<%# image_tag 'http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]%>
