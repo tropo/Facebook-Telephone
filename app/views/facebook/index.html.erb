@@ -8,7 +8,9 @@
 	<p><%= image_tag 'http://graph.facebook.com/' + @user.facebookid + '/picture'%>
 	Welcome <%=@user.name%>! </p>
 	<p>
-		
+	
+	
+	<span id="mynumber">	
 	<% if @user.phonenumber %>
 		<% phonenumber = @user.phonenumber %>
 		<%#button_to_function @user.phonenumber, visual_effect(:toggle_slide, "setnumber", :duration => 0.5) %>
@@ -17,6 +19,7 @@
 		<%#button_to_function 'Add Your Telephone Number', visual_effect(:toggle_slide, "setnumber", :duration => 0.5) %>
 		<%= button_to_redbox('Add Your Number', :inline_phone, html_options = {})%>
 	<% end %>
+	</span>
 	
 	<%=button_to_function "Friends with Telephone", visual_effect(:toggle_slide, "phonebook", :duration => 0.5) %>
 	<%#button_to_function "Invite Friends", visual_effect(:toggle_slide, "invitetophonebook", :duration => 0.5) %>
@@ -40,7 +43,7 @@
 		<% if telephoneuser %>
 
 		<%# link_to_redbox(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), :inline_invite, html_options = {})%>		
-		<%= link_to(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]), nil, :onclick => "popitup('/telephone/" + telephoneuser.facebookid + "')")%>		
+		<%= link_to(image_tag('http://graph.facebook.com/' + friend["id"] + '/picture', :confirm => 'Call ' + friend["name"] + '?', :title => friend["name"]), nil, :onclick => "popitup('/telephone/" + telephoneuser.facebookid + "')")%>		
 		
 		<% end %>
 		<%# image_tag 'http://graph.facebook.com/' + friend["id"] + '/picture', :title => friend["name"]%>

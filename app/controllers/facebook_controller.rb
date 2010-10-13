@@ -152,6 +152,7 @@ class FacebookController < ApplicationController
     end
     render :update do |page|
       # page.alert "phono address:  #{@user.phonoaddress}"
+      page.replace_html('mynumber', '<input onclick="RedBox.showInline(\'inline_phone\');" type="button" value="' + session["phone"] + '"/>')
       page.RedBox.close(); 
     end
   end
