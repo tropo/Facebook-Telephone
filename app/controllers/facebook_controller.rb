@@ -2,8 +2,8 @@ class FacebookController < ApplicationController
   def index
     
     #Testing
-    # session["id"] = "1115105088"
-    # friends = nil
+    session["id"] = "1115105088"
+    friends = nil
 
     if session["id"]
       
