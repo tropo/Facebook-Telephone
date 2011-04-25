@@ -104,11 +104,11 @@
 					// if (location.querystring["phone"]){
 						// var dialString = document.getElementById("dialstring");
 						// dialString.value = location.querystring["phone"];
-						// $("a.callme").addClass("phono-ready").text("Call");
-						// $(".digit-hldr").slideDown();
-						// $("a.callme").hide();
-						// 			    		$("a.hangup").show().css("display","block");
-						// 			    		
+						$("a.callme").addClass("phono-ready").text("Call");
+						$(".digit-hldr").slideDown();
+						$("a.callme").hide();
+			    		$("a.hangup").show().css("display","block");
+									    		
 						// placeCall();
 						makeCall();
 						
@@ -261,9 +261,14 @@
 			<div id="dialform">
 			<center><span id="status"></span></center>
 	        <center><form name="dialer"> 
-				<input type="text" id="dialstring" value="Number/SIP Address" class="clearMeFocus">
+				<!-- <input type="text" id="dialstring" value="Number/SIP Address" class="clearMeFocus">
 				<input type="hidden" id="destinationTxt" value="" />
-				<input type="hidden" id="did" value="" />
+				<input type="hidden" id="did" value="" /> -->
+				
+				<input type="text" id="dialstring" value="<%=@display-%>">
+				<input type="hidden" id="destinationTxt" value="<%=@phone%>" />
+				<input type="hidden" id="did" value="<%=@did%>" />
+				
 	        </form></center>
 			</div>
 			<a class="callme" href="#">Loading...</a>
